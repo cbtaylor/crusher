@@ -1,0 +1,108 @@
+-- Haskell Playground 1.0
+
+tW1
+b0
+length b0
+
+g0
+
+run
+grid0
+slides0
+jumps0
+board0
+--newBoards0
+--tree0
+--heuristic0
+
+let b6 = sTrToBoard "WW--W-W---W--BBB-B-"
+
+boardToStr board0
+
+generateGridn 3
+generateGridn 4
+
+head (generateGridn 3)
+
+f 4
+horiz_neighbor (f 3)
+
+let b = generateGridn 3
+
+-- TEST: generateSlides
+generateSlides b 3
+
+let slides = generateSlides b 3
+
+horizontalLeaps b
+
+topLeaps b 3
+bottomLeaps b 3
+spanLeaps b 3
+
+-- TEST: generateLeaps
+generateLeaps b 3
+let jumps = generateLeaps b 3
+
+-- TEST: boardEvaluator
+boardEvaluator B [] 3 b3 True
+
+
+countPieces W b3
+
+filter (\x -> fst x == (0,1)) slides
+
+
+let state = zip b6 b
+
+-- all White tiles:
+filter (\x -> fst x == W) state
+let whiteTiles = filter (\x -> fst x == W) state
+
+-- all empty tiles
+filter (\x -> fst x == D) state
+let emptyTiles = filter (\x -> fst x == D) state
+
+-- all Black tiles:
+filter (\x -> fst x == B) state
+let blackTiles = filter (\x -> fst x == B) state
+
+-- just points that are White:
+[(fst (snd x), snd (snd x)) | x <- filter (\x -> fst x == W) state]
+let whitePoints = [(fst (snd x), snd (snd x)) | x <- whiteTiles]
+
+let emptyPoints = [(fst (snd x), snd (snd x)) | x <- emptyTiles]
+
+let blackPoints = [(fst (snd x), snd (snd x)) | x <- blackTiles]
+
+elem (0,1) [(0,0),(0,1),(0,2)]
+
+[(fst sl, snd sl) | sl <- slides, elem (fst sl) whitePoints, elem (snd sl) emptyPoints]
+
+
+validSlides state slides B
+
+
+
+
+validJumps state jumps B
+
+
+
+
+validSlides state slides W
+
+
+
+
+changeInState ((0,0),(0,1)) W state
+nextBoard W state ((0,0),(0,1))
+
+
+fst $ unzip (changeInState ((0,0),(0,1)) W state)
+
+
+map (\x -> changeInState x W state) (validJumps state jumps W)
+
+generateNewStates b6 [] b slides jumps W
+

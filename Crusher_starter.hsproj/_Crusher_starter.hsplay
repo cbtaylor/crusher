@@ -1,0 +1,56 @@
+-- Haskell Playground 1.0
+let b = generateGridn 3
+
+let b6 = sTrToBoard "WW--W-W---W--BBB-B-"
+
+let state = zip b6 b
+
+let slides = generateSlides b 3
+
+let jumps = generateLeaps b 3
+
+-- TEST: generateSlides
+generateSlides b 3
+
+-- TEST: generateLeaps
+generateLeaps b 3
+
+-- TEST: boardEvaluator
+boardEvaluator B [] 3 b6 True
+
+-- TEST: changeInState
+changeInState ((0,0),(0,1)) W state
+
+-- TEST: nextBoard
+nextBoard W state ((0,0),(0,1))
+
+-- TEST: generateNewStates
+generateNewStates b6 [[W,W,D,D,W,D,D,D,D,D,W,D,D,B,W,B,D,B,D]] b slides jumps W
+
+-- TEST: generateTree
+generateTree b0 [] b slides jumps W 2 3
+
+let tree1 = generateTree b3 [] b slides jumps W 2 3
+
+
+depth tree1
+board tree1
+nextBoards tree1
+
+length (nextBoards tree1)
+depth (head (nextBoards tree1))
+board (head (nextBoards tree1))
+nextBoards (head (nextBoards tree1))
+length (nextBoards (head (nextBoards tree1)))
+
+maxBoardEvals (nextBoards (head (nextBoards tree1)))
+
+minBoardEvals (nextBoards (head (nextBoards tree1)))
+
+heuristic0 b6 True
+
+minimax tree1 heuristic0
+
+minimax' tree1 heuristic0 True
+
+minmaxTree tree1 [] True W 3
