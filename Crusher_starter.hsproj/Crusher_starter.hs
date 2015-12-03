@@ -598,6 +598,14 @@ countPieces player board
 minimax :: BoardTree -> (Board -> Bool -> Int) -> Board
 minimax (Node _ b children) heuristic = board0-- To Be Completed
 
+
+-- generate a list of new trees, one for each board in nextBoards
+-- set depth to one less than original depth
+genListOfTrees bd history grid slides jumps player depth n = 
+    [generateTree (board bd) history grid slides jumps player depth n | 
+     bd <- nextBoards tree]
+   where
+     tree = generateTree bd history grid slides jumps player depth n
 --
 -- minimax'
 --

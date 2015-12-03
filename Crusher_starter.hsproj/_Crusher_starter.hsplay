@@ -30,7 +30,7 @@ generateNewStates b6 [[W,W,D,D,W,D,D,D,D,D,W,D,D,B,W,B,D,B,D]] b slides jumps W
 -- TEST: generateTree
 generateTree b0 [] b slides jumps W 2 3
 
-let tree1 = generateTree b3 [] b slides jumps W 2 3
+let tree1 = generateTree b3 [] b slides jumps W 4 3
 
 
 depth tree1
@@ -40,6 +40,11 @@ nextBoards tree1
 length (nextBoards tree1)
 depth (head (nextBoards tree1))
 board (head (nextBoards tree1))
+let nxtbd0 = board ((nextBoards tree1) !! 1)
+
+let tree20 = generateTree nxtbd0 [b2] b slides jumps B 1 3
+
+
 nextBoards (head (nextBoards tree1))
 length (nextBoards (head (nextBoards tree1)))
 
@@ -54,3 +59,7 @@ minimax tree1 heuristic0
 minimax' tree1 heuristic0 True
 
 minmaxTree tree1 [] True W 3
+
+minmaxTree tree20 [b3] False B 3
+
+genListOfTrees b6 [] b slides jumps W 1 3
